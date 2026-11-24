@@ -1,0 +1,23 @@
+package main
+
+import "strings"
+
+struct Item:
+    name: string
+    qty: int
+
+func stock_line(name: string, qty: int) -> string:
+    return f"{strings.upper(name)}: {qty}"
+
+func main():
+    stock := {"apple": 10, "pear": 4, "plum": 7}
+    stock["apple"] += 5
+
+    total := 0
+    for name, qty in stock:
+        println(stock_line(name, qty))
+        total += qty
+    println(f"total items: {total}")
+
+    item := Item{name: "plum", qty: stock["plum"]}
+    println(f"{item.name} has {item.qty}")

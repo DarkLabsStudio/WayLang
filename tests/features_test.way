@@ -1,0 +1,90 @@
+package main
+
+import "math"
+import "strings"
+
+struct Point:
+    x: int
+    y: int
+
+interface Shape:
+    area() -> int
+
+func (p: Point) area() -> int:
+    return p.x * p.y
+
+func add(a: int, b: int) -> int:
+    return a + b
+
+func divmod(a: int, b: int) -> (int, int):
+    return a / b, a % b
+
+func greet(name: string, greeting: string = "Hello") -> string:
+    return f"{greeting}, {name}!"
+
+func report():
+    println("deferred")
+
+func may_fail(ok: bool) -> (int, error):
+    if ok:
+        return 1, nil
+    return 0, error("failed")
+
+func main():
+    total := 0
+    for i := 0; i < 5; i++:
+        total += i
+    println(f"total={total}")
+
+    for n in range(3):
+        print(n)
+    println("")
+
+    xs := [10, 20, 30]
+    println(f"len={len(xs)} first={xs[0]} last={xs[2]}")
+
+    m := {"one": 1, "two": 2}
+    print("two=")
+    println(m["two"])
+
+    switch total:
+        case 10:
+            println("ten")
+        case 1, 2:
+            println("small")
+        default:
+            println("other")
+
+    defer report()
+
+    println(add(20, 22))
+    q, r := divmod(17, 5)
+    println(f"divmod={q} rem={r}")
+    println(greet("WayLang"))
+    println(greet("WayLang", "Hi"))
+
+    p := Point{x: 3, y: 4}
+    shape: Shape = p
+    println(f"area={shape.area()}")
+
+    v, err := may_fail(true)
+    if err != nil:
+        println("unexpected error")
+    else:
+        println(f"v={v}")
+
+    boxed: any = 42
+    println(f"type={type(boxed)} value={boxed}")
+
+    trimmed := strings.trim("  WayLang  ")
+    println(trimmed)
+    print(strings.upper("quiet"))
+    println("")
+    if strings.contains(trimmed, "Way"):
+        println("contains Way")
+
+    println(f"sqrt={math.sqrt(16.0)}")
+
+    double := func(x: int) -> int:
+        return x * 2
+    println(f"double={double(21)}")

@@ -1,0 +1,17 @@
+# Build artifacts
+/build/
+*.exe
+*.o
+*.obj
+*.ll
+*.bc
+
+# Bundled LLVM toolchain (large; provision locally)
+/.toolchain/
+
+# Freebuff desktop state
+/.freebuff/
+
+# Editor/OS noise
+.DS_Store
+Thumbs.db

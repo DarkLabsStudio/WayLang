@@ -1,0 +1,31 @@
+package main
+
+struct Circle:
+    radius: float
+
+struct Rect:
+    w: float
+    h: float
+
+interface Shape:
+    area() -> float
+    name() -> string
+
+func (c: Circle) area() -> float:
+    return 3.14159 * c.radius * c.radius
+
+func (c: Circle) name() -> string:
+    return "circle"
+
+func (r: Rect) area() -> float:
+    return r.w * r.h
+
+func (r: Rect) name() -> string:
+    return "rect"
+
+func describe(s: Shape):
+    println(f"{s.name()} area={s.area()}")
+
+func main():
+    describe(Circle{radius: 2.0})
+    describe(Rect{w: 3.0, h: 4.0})
